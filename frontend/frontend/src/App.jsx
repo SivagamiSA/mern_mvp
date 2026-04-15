@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
+  const [modeStatus, setModeStatus] = useState("AI"); // AI or Fallback
   const [prompt, setPrompt] = useState("");
   const [theme, setTheme] = useState("");
   const [color, setColor] = useState("");
@@ -63,6 +64,19 @@ function App() {
         <h1 className="text-3xl font-semibold text-center mb-8 text-blue-700">
           AI Prompt Generator
         </h1>
+        {/* MODE BADGE */}
+<div className="flex justify-end mb-3">
+  <span
+    className={`px-3 py-1 text-sm rounded-full font-medium transition-all duration-300
+    ${
+      modeStatus === "AI"
+        ? "bg-green-100 text-green-700"
+        : "bg-orange-100 text-orange-700"
+    }`}
+  >
+    {modeStatus === "AI" ? " AI Mode" : "Fallback Mode"}
+  </span>
+</div>
 
         {/* CARD */}
         <div className="bg-white/60 backdrop-blur-xl border border-gray-200 rounded-2xl p-6 shadow-lg transition-all duration-300 hover:shadow-2xl">
@@ -115,6 +129,10 @@ function App() {
             <option>Gemini</option>
             <option>Claude</option>
             <option>Cursor</option>
+            <option>Replit</option>
+            <option>Lovable</option>
+            <option>AI Studio</option>
+
           </select>
 
           {/* MODE */}
@@ -145,11 +163,11 @@ function App() {
           {/* CUSTOMIZE */}
           {mode === "customize" && (
             <div className="space-y-3 mb-4">
-              {[["Stack", setStack, ["MERN", "MEAN"]],
-                ["Deployment", setDeployment, ["Vercel", "Netlify"]],
-                ["Auth", setAuth, ["JWT", "Firebase"]],
-                ["Model", setModel, ["Gemini", "Claude"]],
-                ["Database", setDatabase, ["MongoDB", "PostgreSQL"]]
+              {[["Stack", setStack, ["MERN", "MEAN","JAM","Fullstack","python stack","No Idea","Not Needed"]],
+                ["Deployment", setDeployment, ["Vercel", "Netlify","Render","Heroku","AWS","No Idea"]],
+                ["Auth", setAuth, ["JWT", "Firebase","No Idea","Not Needed"]],
+                ["Model", setModel, ["CNN","RNN","Decision Tree","SVM","KNN","No Idea","Not Needed"]],
+                ["Database", setDatabase, ["MongoDB", "PostgreSQL","oracleDB","No Idea"]]
               ].map(([label, setter, options], i) => (
                 <select
                   key={i}
